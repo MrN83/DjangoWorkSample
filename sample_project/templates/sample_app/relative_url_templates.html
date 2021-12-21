@@ -1,0 +1,10 @@
+<!DOCTYPE html> <!-- Must always be here -->
+{% extends "sample_app/base.html"%}
+<!-- {perc extends url "sample_app:base_template" perc} THIS DOESN'T WORK :)
+"perc" is %, needed to make sure Django doesn't try to execute the code :P
+-->
+{% block body_block %}
+<h1>Welcome to the relative url templates!!!</h1>
+<p>This is an example of template inheritance!</p>
+<p><a href='{%url 'index'%}'>Return Home</a></p>
+{% endblock %}

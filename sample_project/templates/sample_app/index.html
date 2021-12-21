@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends "sample_app/base.html" %}
+{% block body_block %}
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Hi Welcome To Django Level 2</h1>
+        <h2>Here are your access records</h2>
+        <div class="djangotwo">
+          {% if access_records %}
+          <table>
+            <thead>
+              <th>Site Name</th>
+              <th>Date Accessed</th>
+
+              {% for acc in access_records %}
+              <tr>
+                <td>{{acc.name}}</td>
+                <td>{{acc.date}}</td>
+              </tr>
+              {% endfor %}
+
+            </thead>
+          </table>
+          {% else %}
+          <p>NO ACCESS RECORD FOUND</p>
+          {% endif %}
+
+          </div>
+          <h1>Trying out templated urls</h1>
+          <!--What out: there shouldn't be any unnecessary space in the template tag below! -->
+          <p>For users: <a href="{% url 'sample_app:users'%}">click here</a></p>
+          <p>For help: <a href="{% url 'sample_app:help'%}">click here</a></p>
+          <p>For forms: <a href="{% url 'sample_app:form_name'%}">click here</a></p>
+          <p>For user forms: <a href="{% url 'sample_app:form_enter_user'%}">click here</a></p>
+          <p><a href="{% url 'sample_app:relative' %}">CLICK HERE TO TEST RELATIVE PATH IN TEMPLATE</a></p>
+          <p>For the admin index page: <a href="{% url 'admin:index' %}">click here</a></p>
+      </div>
+
+    </div>
+{%endblock%}

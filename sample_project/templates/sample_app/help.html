@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load static %} <!--NOTE: load staticfiles is removed in Django 3 and later.-->
+<html>
+  <head>
+    <!--  The head contains Meta-data -->
+    <!-- Use html+Tab to get the boilerplate  -->
+    <!-- Use cmd+/ to get the html comment line -->
+    <meta charset="utf-8">
+    <link rel="stylesheet" href='{% static "css/styles.css" %}'/>
+    <title> Help Page </title>
+  </head>
+  <body>
+    <!-- The body contains the actual content -->
+    <h1>Looking for support?</h1>
+    <p><strong>Help Info:</strong> {{ help_info }}</p>
+    <p><a href='{%url 'index'%}'>Return Home</a></p>
+    <img src='{% static "images/test.jpg" %}' alt="test.jpg"/>
+  </body>
+</html>

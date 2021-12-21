@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+{% load my_extra_filters %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Users</title>
+    <link rel="stylesheet" href='{% static "css/styles.css"%}'>
+  </head>
+  <body>
+    <h1>List of Users</h1>
+    <h2>Here are your users records</h2>
+    {% if user_records %}
+    <div class="djangotwo">
+    <table>
+      <thead>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>DoB</th>
+        <th>Notes</th>
+      </thead>
+
+      {% for user in user_records %}
+      <tr>
+        <td>{{user.first_name}}</td>
+        <td>{{user.last_name}}</td>
+        <td>{{user.email}}</td>
+        <!-- Experimenting with template filtering -->
+        <td>{{user.DoB|date:"D,d/m/Y"}}</td>
+        <!-- Custom filter, note that ":" must not be followed by any space. -->
+        <td>{{user.notes|appendText:"IDEAS:"}}</td>
+      </tr>
+      {% endfor %}
+
+    </table>
+
+    {% else %}
+    <p>NO USERS FOUND.</p>
+    {% endif %}
+    </div>
+    <p><a href='{%url 'index'%}'>Return Home</a></p>
+  </body>
+</html>
