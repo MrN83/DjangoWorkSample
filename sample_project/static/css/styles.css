@@ -1,0 +1,11 @@
+h1 {
+  color: blue;
+}
+
+table, th, td {
+  border: 2px solid black;
+}
+
+label {
+  color: red
+}
