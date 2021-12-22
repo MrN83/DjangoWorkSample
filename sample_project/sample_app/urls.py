@@ -17,5 +17,6 @@ urlpatterns = [
     path('userformpage/', views.form_user_enter, name='form_enter_user'),
     # path('base_temp/', views.base_template, name='base_template')
     path('register/', views.register, name='register'),
-    path('user_login/', views.user_login, name='user_login')
+    path('user_login/', views.user_login, name='user_login'),
+    path('features_test/', views.features_test, name='features_test'),
 ]

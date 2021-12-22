@@ -9,3 +9,7 @@ table, th, td {
 label {
   color: red
 }
+
+img {
+  width: 100%;
+}

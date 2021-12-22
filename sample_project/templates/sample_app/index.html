@@ -1,40 +1,33 @@
 <!DOCTYPE html>
 {% extends "sample_app/base.html" %}
+{% load static %}
 {% block body_block %}
     <div class="container">
       <div class="jumbotron">
-        <h1>Hi Welcome To Django Level 2</h1>
-        <h2>Here are your access records</h2>
-        <div class="djangotwo">
-          {% if access_records %}
-          <table>
-            <thead>
-              <th>Site Name</th>
-              <th>Date Accessed</th>
-
-              {% for acc in access_records %}
-              <tr>
-                <td>{{acc.name}}</td>
-                <td>{{acc.date}}</td>
-              </tr>
-              {% endfor %}
-
-            </thead>
-          </table>
-          {% else %}
-          <p>NO ACCESS RECORD FOUND</p>
-          {% endif %}
-
-          </div>
-          <h1>Trying out templated urls</h1>
-          <!--What out: there shouldn't be any unnecessary space in the template tag below! -->
-          <p>For users: <a href="{% url 'sample_app:users'%}">click here</a></p>
-          <p>For help: <a href="{% url 'sample_app:help'%}">click here</a></p>
-          <p>For forms: <a href="{% url 'sample_app:form_name'%}">click here</a></p>
-          <p>For user forms: <a href="{% url 'sample_app:form_enter_user'%}">click here</a></p>
-          <p><a href="{% url 'sample_app:relative' %}">CLICK HERE TO TEST RELATIVE PATH IN TEMPLATE</a></p>
-          <p>For the admin index page: <a href="{% url 'admin:index' %}">click here</a></p>
+        <h1>{% if user_name %}Hello {{user_name}}, w{%else%}W{% endif %}elcome to my Django sample project!</h1>
+        <p>This is a basic full-stack Django website/web application.
+        This website utilises HTML, CSS/Boostrap and JavaScript/JQuery in the front-end
+      and Python/Django and SQLite in the back-end. The website is hosted on PyhonAnywhere
+    and the source code is available on GitHub.</p>
+    <p>This sample website follows the Django architecture below and will serve
+    as an example of how to build a simple full-stack Django web application.</p>
+    <p>
+      <strong>Versions:</strong> Python - 3.9, Django - 3.2.5, Bootstrap - 3.3.7, JQuery - 3.5.1
+    </p>
+      <figure class="figure">
+        <img class="figure-img img-fluid rounded" src='{% static "images/DjangoArchitecture.png" %}' alt="DjangoArchitecture.jpg"/>
+        <figcaption class="figure-caption">Django Artchitecture (Source:Pierian Data/Udemy course - Django Bootcamp).</figcaption>
+      </figure>
       </div>
+    </div>
+    <!-- Include the content of another HTML file -->
+    {% include "sample_app/instructions.html"%}
 
+    <div class="container">
+      <div class="jumbotron">
+        <h2>Explore</h2>
+        <!--What out: there shouldn't be any unnecessary space in the template tag below! -->
+        <p>Visit this page to check out some basic features of the website: <a href="{% url 'sample_app:features_test'%}">CLICK HERE</a></p>
+      </div>
     </div>
 {%endblock%}

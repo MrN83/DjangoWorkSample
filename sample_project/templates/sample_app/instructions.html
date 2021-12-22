@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<div class="container">
+  <div class="jumbotron">
+    <h2>Instructions for students (December 2021)</h2>
+    <p>To download the website and set up development environment to develop
+    and test it on your own local computer, follow the instructions below.</p>
+    <button type="button" class="btn btn-info btn_arrow" data-toggle="collapse" data-target="#envs">1. Prepare environment</button>
+    <button type="button" class="btn btn-info btn_arrow" data-toggle="collapse" data-target="#source">2. Get source</button>
+    <button type="button" class="btn btn-info btn_arrow" data-toggle="collapse" data-target="#atom">3. Get editor</button>
+    <button type="button" class="btn btn-info btn_arrow" data-toggle="collapse" data-target="#test_local">4. Test locally</button>
+
+    <div id="envs" class="collapse">
+      <h3>Prepare the environment</h3>
+      <ul>
+        <li>Install the latest version of <a href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a>
+          (to help ease the management of Python packages and virtual environments)</li>
+          <li>Create a new virtual environment for Django development:<br>
+            Open the miniconde console (anaconda prompt) and run
+            <pre><code>conda create --name myDjangoEnv python=3.9
+  conda activate myDjangoEnv
+  </code></pre>
+  <strong>Note: pick the latest version for Python.</strong><br>
+          Check to make sure the environment has been created:
+          <pre><code>conda info --envs</code></pre>
+          You should also see the console prompt changed to include "myDjangoEnv".
+          From now on all Django development should take place within this virtual environment.
+          If you want to switch to the "base" environment, simply deactivate the Django environment with:
+          <pre><code>conda deactivate myDjangoEnv</code></pre>
+          </li>
+          <li>Install the necessary Python packages
+            Make sure you're still in the virtual enviroment created above. Everything you're installing now
+            should only exist within that environment.
+            <ul>
+              <li>Django: <code>pip install django</code></li>
+              <li>Pillow (for image management): <code>pip install pillow</code></li>
+              <li>Security features:
+                <code>pip install bcrypt</code>,
+              <code>pip install django[argon2]</code></li>
+              <li>Other utilities (environment files, raw SQL, etc.):
+                <code>pip install django-sql</code>,
+              <code>pip install python-decouple</code></li>
+            </ul>
+          </li>
+      </ul>
+    </div>
+
+    <div id="source" class="collapse">
+      <h3>Get the source code</h3>
+      <ul>
+        <li>Donwload and install <a href="https://git-scm.com/#">Git</a></li>
+        <li>Sign up for a <a href="https://github.com/#">GitHub</a> account and then download and install <a href="https://desktop.github.com/#">GitHub Desktop</a></li>
+        <li>Create a folder in a safe place for the code</li>
+        <li>Clone the repository - using the Git Bash console (or GitHub desktop if you're not a fan of commandline interfaces)
+          <pre><code>git clone https://github.com/MrN83/DjangoWorkSample.git</code></pre>
+          Check your folder and see if you have all the files from this repository (<a href="https://github.com/MrN83/DjangoWorkSample.git">click here</a>)
+        </li>
+      </ul>
+    </div>
+
+    <div id="atom" class="collapse">
+      <h3>Get a text editor (Atom)</h3>
+      <p>All you need now is a text editor to open the code and start developing. I strongly recommend Atom for
+      your text editor because it is fairly easy to use and can be extended to become (almost) a one-stop shop for
+    everything you'd need.</p>
+    <ul>
+      <li>Download and install <a href="https://atom.io/">Atom</a></li>
+      <li>Add to Atom the following packages:
+        <ol>
+          <li>atom-django (for Django support)</li>
+          <li>autocomplete-python-jedi (autocomplete code for higher coding efficiency)</li>
+          <li>platformio-ide-terminal (to run the commandline console from within Atom)<br>
+            Make sure to configure the package to set Shell Override to C:\WINDOWS\System32\cmd.exe - for Windows users.
+          </li>
+        </ol>
+      </li>
+      <li>Close Atom and open the Miniconda console
+        <ul>
+          <li>Check that the Djangon virtual environment is running</li>
+          <li>Run the following command to open Atom in this virtual environment
+          <pre><code>atom --new-instance</code></pre>
+          </li>
+        </ul>
+        <strong>From now on, you should start Atom this way (conda activate environment, atom --new-instance) to make sure
+        Atom runs within the virtual environment.</strong>
+      </li>
+    </ul>
+    </div>
+
+    <div id="test_local" class="collapse">
+      <h3>Test locally</h3>
+      <p>To test the project, you will need to set up the database, populate some fake data, create a super user (admin)
+      and then start the website from localhost. It's easier than it sounds and you'll be doing this regularly so you will
+    not forget. Follow these steps below.</p>
+    <ol>
+      <li>Start Atom from the virtual environment, open the commandline console in Atom</li>
+      <li>Navigate to the outside sample_project folder (which is the "root folder" of this project). Learn to use commands such as
+      <code>dir</code> and <code>cd</code> to accomplish this. Use <code>dir</code> to make sure you can see the file
+        <code>manage.py</code> in the current folder.</li>
+      <li>The database must be set up with the data model in the code, run these commands in sequence:
+        <pre><code>python manage.py migrate<br>python manage.py makemigrations sample_app<br>python manage.py migrate</code></pre>
+      </li>
+      <li>Fake data needs to be populated for testing, run this command:
+        <pre><code>python poplate_sample_app.py</code></pre>
+      </li>
+      <li>Create a super user to manage the Admin page, which would allow you to check the database, as well as running raw SQL.
+        <pre><code>python manage.py createsuperuser</code></pre>
+        Make sure to come up with a good username and password!
+      </li>
+      <li>Finally, run the server:
+        <pre><code>python manage.py runserver</code></pre>
+        Check and make sure that there are no errors. Then open a Chrome browser
+        and copy and paste in the localhost url (http://127.0.0.1:8000/). You should
+        see the home page of this website. Congratulations!
+      </li>
+      <li>Explore the website and see if everything works!</li>
+
+    </ol>
+    </div>
+
+  </div>
+</div>

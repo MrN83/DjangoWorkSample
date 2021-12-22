@@ -10,13 +10,23 @@ from django.contrib.auth.decorators import login_required
 #Just by calling a method here can trigger the navigation to that page
 #However, the url in the browser isn't changed. Perhaps fix that with JavaScript?
 def index(request):
+    user_name = None
+    try:
+        if (request.user):
+            user_name = request.user.username
+            print(f"Username: {user_name}")
+    except:
+        print("User not logged in.")
+
+    return render(request, 'sample_app/index.html', context={'user_name': user_name})
+
+def features_test(request):
 
     webpages_list = AccessRecord.objects.order_by('date')
     date_dict = {'access_records' : webpages_list}
 
-    return render(request, 'sample_app/index.html', context=date_dict)
+    return render(request, 'sample_app/features_test.html', context=date_dict)
 
-@login_required
 def help(request):
     my_dict = {'help_info' : 'This is some help info.'}
     return render(request, 'sample_app/help.html', context = my_dict)
