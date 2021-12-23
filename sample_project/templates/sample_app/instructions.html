@@ -16,8 +16,7 @@
           (to help ease the management of Python packages and virtual environments)</li>
           <li>Create a new virtual environment for Django development:<br>
             Open the miniconde console (anaconda prompt) and run
-            <pre><code>conda create --name myDjangoEnv python=3.9
-  conda activate myDjangoEnv
+            <pre><code>conda create --name myDjangoEnv python=3.9<br>conda activate myDjangoEnv
   </code></pre>
   <strong>Note: pick the latest version for Python.</strong><br>
           Check to make sure the environment has been created:
@@ -27,7 +26,7 @@
           If you want to switch to the "base" environment, simply deactivate the Django environment with:
           <pre><code>conda deactivate myDjangoEnv</code></pre>
           </li>
-          <li>Install the necessary Python packages
+          <li>Install the necessary Python packages.
             Make sure you're still in the virtual enviroment created above. Everything you're installing now
             should only exist within that environment.
             <ul>
@@ -36,9 +35,13 @@
               <li>Security features:
                 <code>pip install bcrypt</code>,
               <code>pip install django[argon2]</code></li>
-              <li>Other utilities (environment files, raw SQL, etc.):
-                <code>pip install django-sql</code>,
-              <code>pip install python-decouple</code></li>
+              <li>Other utilities (environment files, raw SQL, fake data for testing etc.):
+                <ul>
+                  <li><code>pip install python-decouple</code></li>
+                  <li><code>pip install django-sql</code></li>
+                  <li><code>pip install faker</code></li>
+                </ul>
+              </li>
             </ul>
           </li>
       </ul>
@@ -50,7 +53,7 @@
         <li>Donwload and install <a href="https://git-scm.com/#">Git</a></li>
         <li>Sign up for a <a href="https://github.com/#">GitHub</a> account and then download and install <a href="https://desktop.github.com/#">GitHub Desktop</a></li>
         <li>Create a folder in a safe place for the code</li>
-        <li>Clone the repository - using the Git Bash console (or GitHub desktop if you're not a fan of commandline interfaces)
+        <li>In the new folder, clone the repository - using the Git Bash console (or GitHub desktop if you're not a fan of commandline interfaces)
           <pre><code>git clone https://github.com/MrN83/DjangoWorkSample.git</code></pre>
           Check your folder and see if you have all the files from this repository (<a href="https://github.com/MrN83/DjangoWorkSample.git">click here</a>)
         </li>
@@ -73,12 +76,14 @@
           </li>
         </ol>
       </li>
-      <li>Close Atom and open the Miniconda console
+      <li>Close Atom and open (or close and re-open) the Miniconda console
         <ul>
           <li>Check that the Djangon virtual environment is running</li>
           <li>Run the following command to open Atom in this virtual environment
           <pre><code>atom --new-instance</code></pre>
           </li>
+          <li>Add the <em>sample_project</em> folder (that you got from GitHub) to Atom and open the commandline console and
+          start working!</li>
         </ul>
         <strong>From now on, you should start Atom this way (conda activate environment, atom --new-instance) to make sure
         Atom runs within the virtual environment.</strong>
@@ -93,6 +98,20 @@
     not forget. Follow these steps below.</p>
     <ol>
       <li>Start Atom from the virtual environment, open the commandline console in Atom</li>
+      <li>Find sample_project/settings.py, comment out two lines of code and uncomment another two
+        so that SECRET_KEY is 'django-insecure....' and DEBUG is True, like this:
+<pre><code>
+  # TO BE USED IN LOCAL DEVELOPMENT ONLY:
+  SECRET_KEY = 'django-insecure-=d&fhnb=ncw=%m!(##7)45d8&ph=nw#xn!dv!*t77wgplr#d%*'
+  #SECRET_KEY = config("SECRET_KEY")
+
+  # SECURITY WARNING: don't run with debug turned on in production!
+  # TO BE USED IN LOCAL DEVELOPMENT ONLY:
+  DEBUG = True
+  #DEBUG = config('DEBUG', cast=bool)
+</code> </pre>
+
+      </li>
       <li>Navigate to the outside sample_project folder (which is the "root folder" of this project). Learn to use commands such as
       <code>dir</code> and <code>cd</code> to accomplish this. Use <code>dir</code> to make sure you can see the file
         <code>manage.py</code> in the current folder.</li>
@@ -100,7 +119,7 @@
         <pre><code>python manage.py migrate<br>python manage.py makemigrations sample_app<br>python manage.py migrate</code></pre>
       </li>
       <li>Fake data needs to be populated for testing, run this command:
-        <pre><code>python poplate_sample_app.py</code></pre>
+        <pre><code>python populate_sample_app.py</code></pre>
       </li>
       <li>Create a super user to manage the Admin page, which would allow you to check the database, as well as running raw SQL.
         <pre><code>python manage.py createsuperuser</code></pre>
@@ -108,7 +127,8 @@
       </li>
       <li>Finally, run the server:
         <pre><code>python manage.py runserver</code></pre>
-        Check and make sure that there are no errors. Then open a Chrome browser
+        Check and make sure that there are no errors (and make sure that the runserver
+        command is still running the whole time, because that is basically the "server"). Then open a Chrome browser
         and copy and paste in the localhost url (http://127.0.0.1:8000/). You should
         see the home page of this website. Congratulations!
       </li>

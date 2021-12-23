@@ -7,7 +7,7 @@ django.setup()
 
 ##FAKE POP SCRIPT
 import random
-from sample_app.models import AccessRecord, Topic, Webpage, User
+from sample_app.models import AccessRecord, Topic, Webpage, WebUser
 from faker import Faker
 
 fakegen = Faker()
@@ -44,7 +44,7 @@ def populate_users(N=5):
         fake_dob = fakegen.date()
         fake_notes = fakegen.paragraph()
 
-        user = User.objects.get_or_create(first_name=fake_fname,
+        user = WebUser.objects.get_or_create(first_name=fake_fname,
                                             last_name=fake_lname,
                                             email=fake_email,
                                             DoB=fake_dob,

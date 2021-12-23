@@ -24,11 +24,14 @@ MEDIA_DIR =  os.path.join(BASE_DIR, "media")
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# NOT USED, EXAMPLE ONLY:
+
+# TO BE USED IN LOCAL DEVELOPMENT ONLY:
 #SECRET_KEY = 'django-insecure-=d&fhnb=ncw=%m!(##7)45d8&ph=nw#xn!dv!*t77wgplr#d%*'
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# TO BE USED IN LOCAL DEVELOPMENT ONLY:
+#DEBUG = True
 DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['127.0.0.1','mrn83.pythonanywhere.com']
