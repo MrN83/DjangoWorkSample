@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{%load static%}
 <div class="container">
   <div class="jumbotron">
     <h2>Instructions for students (December 2021)</h2>
@@ -52,10 +53,18 @@
       <ul>
         <li>Donwload and install <a href="https://git-scm.com/#">Git</a></li>
         <li>Sign up for a <a href="https://github.com/#">GitHub</a> account and then download and install <a href="https://desktop.github.com/#">GitHub Desktop</a></li>
-        <li>Create a folder in a safe place for the code</li>
-        <li>In the new folder, clone the repository - using the Git Bash console (or GitHub desktop if you're not a fan of commandline interfaces)
-          <pre><code>git clone https://github.com/MrN83/DjangoWorkSample.git</code></pre>
-          Check your folder and see if you have all the files from this repository (<a href="https://github.com/MrN83/DjangoWorkSample.git">click here</a>)
+        <li>Create a new folder in a safe place for the code</li>
+        <li>Visit my <a href="https://github.com/MrN83/DjangoWorkSample.git">GitHub repository</a> and click the Fork button (below)
+          <figure class="figure">
+            <img class="figure-img img-fluid rounded" src='{% static "images/GitHub_ForkButton.png" %}' alt="GitHub_ForkButton.png"/>
+            <figcaption class="figure-caption">Click the fork button.</figcaption>
+          </figure>
+          This will copy my code into your GitHub account to create your own "repository". <em>DO NOT CLONE my public repository, it's better for you to have
+          your own copy. If my code changes in the future, you can always fork again.</em>
+        </li>
+        <li>In the new folder (created before), clone <em>your own repository</em> - using the Git Bash console (or GitHub desktop if you're not a fan of commandline interfaces)
+          <pre><code>git clone [THE HTTP ADDRESS OF YOUR GITHUB REPOSITORY]</code></pre>
+          Check your folder and see if you have all the files from my repository (<a href="https://github.com/MrN83/DjangoWorkSample.git">click here</a>)
         </li>
       </ul>
     </div>
